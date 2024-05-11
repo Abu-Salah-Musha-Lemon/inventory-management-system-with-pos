@@ -41,13 +41,18 @@
                         </div>
                         <div class="col-md-4">
                             <label for="pay">Case</label>
-                            <input type="number" name="pay" class="form-control">
+                            <input type="number" name="pay" id="pay" class="form-control"step="0.01">
                             <span class='text-danger fs-bolder'>@error('pay'){{ $message }} @enderror</span>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <label for="due">Due</label>
                             <input type="number" name="due" class="form-control">
-                            <span class='text-danger fs-bolder'>@error('due'){{ $message }} @enderror</span>
+                            <span class='text-danger fs-bolder'></span>
+                        </div> -->
+                        <div class="col-md-4">
+                            <label for="cashDue">Cash Due</label>
+                            <input type="number" id="due" name="due" class="form-control" step="0.01">
+                            <span class="text-danger fs-bolder">@error('due'){{ $message }} @enderror</span>
                         </div>
                     </div>
                 </div> 
@@ -56,10 +61,11 @@
                 <input type="hidden" name="order_month" value="{{ date('F') }}">
                 <input type="hidden" name="order_year" value="{{ date('Y') }}">
                 <input type="hidden" name="order_status" value="pending">
+                
                 <input type="hidden" name="total_products" value="{{ Cart::count() }}">
                 <input type="hidden" name="sub_total" value="{{ Cart::subtotal() }}">
                 <input type="hidden" name="vat" value="{{ Cart::tax() }}">
-                <input type="hidden" name="total" value="{{ Cart::total() }}">
+                <input type="hidden" name="total" id='total' value="{{$total=  Cart::total() }}">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Print Invoice</button>
@@ -69,36 +75,22 @@
         </div> 
     </div>
 </div><!-- /.modal -->
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const paymentStatus = document.getElementById('payment_status');
-        const payInput = document.getElementById('pay');
-        const dueInput = document.querySelector('input[name="due"]');
+    function calculateCashDue() {
+    let paymentAmount = document.getElementById('pay').value;
+    let totalAmount = document.getElementById('total').value.replace(/,/g, '');
+    let cashDue = totalAmount - paymentAmount;
+    document.getElementById('due').value = cashDue.toFixed(2);
+}
 
-        paymentStatus.addEventListener('change', function() {
-            calculateDue();
-        });
+document.getElementById('pay').addEventListener('input', calculateCashDue);
 
-        payInput.addEventListener('input', function() {
-            calculateDue();
-        });
+calculateCashDue(); // This line should be placed after adding the event listener
 
-        function calculateDue() {
-            const paymentMethod = paymentStatus.value;
-            const amountPaid = parseFloat(payInput.value) || 0;
-            const totalAmount = parseFloat('{{ Cart::total() }}') || 0;
 
-            let dueAmount = 0;
-
-            if (paymentMethod === 'HandCase' || paymentMethod === 'Check') {
-                dueAmount = totalAmount - amountPaid;
-            }
-
-            dueInput.value = dueAmount.toFixed(2);
-        }
-    });
+   
 </script>
+
 
         <div class="container">
 

@@ -8,6 +8,91 @@
   }
 </style>
 
+<!-- modal -->
+<div id="due" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog"> 
+        <div class="modal-content" > 
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button> <br>
+               
+@php 
+//$id = $order->id;
+       // $due=DB::table('order')->where('id',$id)->get()
+        
+        //if($order->id===$due->customer_id){
+        //    $customerDue=DB::('')
+       // }
+        
+        ;@endphp
+                <h4 class="modal-title text-info">Due <span style="float:right">Due: {{$order->due}}</span></h4> {{$order->name}} 
+            </div> 
+            <form role="form" action="{{ URL::to('/due-pay/'.$order->id) }}" method="HEAD">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="payment_status">Payment Method</label>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            <select name="payment_status" class="form-control">
+                                <!-- <option value="">Select</option> -->
+                                <option value="HandCase">HandCase</option>
+                                <option value="Bank">Bank</option>
+                                <option value="Check">Check</option>
+                            </select>
+                            <span class='text-danger fs-bolder'>@error('payment_status'){{ $message }} @enderror</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="pay">Case</label>
+                            <input type="number" name="pay" id="pay" class="form-control"step="0.01">
+                            <span class='text-danger fs-bolder'>@error('pay'){{ $message }} @enderror</span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="cashDue">Cash Due</label>
+                            <input type="number" id="dueNew" name="due" class="form-control" step="0.01" >
+                           
+                        </div>
+                    </div>
+                </div> 
+                <input type="hidden" name=""id= "oldDue" value="{{$order->due}}"step="0.01">
+                <input type="hidden" name="id"id= "id" value="{{$order->id}}"step="0.01">
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger waves-effect waves-light " data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success waves-effect waves-light">Submit</button>
+                </div> 
+            </form>
+
+        </div> 
+    </div>
+</div><!-- /.modal -->
+<script>
+    function calculateCashDue() {
+    let paymentAmount = document.getElementById('pay').value;
+    let totalAmount = document.getElementById('oldDue').value.replace(/,/g, '');
+    // console.log(totalAmount);
+    // console.log(paymentAmount);
+    let cashDue = totalAmount - paymentAmount;
+    console.log(cashDue);
+    document.getElementById('dueNew').value = cashDue.toFixed(2);
+}
+
+document.getElementById('pay').addEventListener('input', calculateCashDue);
+
+calculateCashDue(); // This line should be placed after adding the event listener
+
+
+   
+</script>
+
+
         <div class="container">
 
             <!-- Page-Title -->
@@ -54,19 +139,22 @@
                                             Name: <strong class="text-uppercase" style="text-transform:sentence">{{$order->name}}</strong>
                                             <Address>Address: {{$order->address}}</Address>
                                             City: <span class="text-uppercase">{{$order->city}} </span> <br>
-                                            <abbr title="Phone">Phone:</abbr> {{$order->phone}}
+                                            <p title="Phone">Phone: {{$order->phone}}</p>
                                             </address>
                                     </div>
                                     
                                     <div class="pull-right m-t-30">
                                         <p><strong>Order Date: </strong>{{$order->order_date}}</p>
                                         <p class="m-t-10"><strong>Order Status: </strong> 
-                                        @if($order->order_status=='success')
-                                            <span class="label label-success ">Success</span>
+                                        @if($order->order_status == 'success' && $order->due > 0)
+                                            <span class="label label-success">Success</span>
+                                            <span class="label label-warning">Due</span>
+                                        @elseif($order->order_status == 'success' && $order->due == 0)
+                                            <span class="label label-success">Success</span>
                                         @else
                                             <span class="label label-pink">Pending</span>
-                                        
                                         @endif
+
                                         </p>
                                         <p class="m-t-10"><strong>Order ID: </strong> {{$order->id}}</p>
                                     </div>
@@ -125,11 +213,16 @@
                             <hr>
                             <div class="hidden-print">
                                 <div class="pull-right">
-                                    @if($order->order_status=='success')
-                                    <button type="submit"class="btn btn-inverse waves-effect waves-light" id="printPi" ><i class="fa fa-print"></i></button>
-                                    @else
-                                    <a href="{{URL::to('/paid/'.$order->id)}}" class="btn btn-primary waves-effect waves-light">Submit</a>
-                                    @endif
+                                @if($order->order_status == 'success' && $order->due > 0.00)
+                                    <button type="submit" class="btn btn-inverse waves-effect waves-light" id="printPi"><i class="fa fa-print"></i></button>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#due">Due</a>
+                                @elseif($order->order_status == 'success' && $order->due == 0.00)
+                                    <button type="submit" class="btn btn-inverse waves-effect waves-light" id="printPi"><i class="fa fa-print"></i></button>
+                                @else
+                                    <a href="#" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#due">Due</a>
+                                    <a href="{{ URL::to('/paid/'.$order->id) }}" class="btn btn-primary waves-effect waves-light">Submit</a>
+                                @endif
+
                                 </div>
                             </div>
                         </div>

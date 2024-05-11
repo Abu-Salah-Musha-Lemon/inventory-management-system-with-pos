@@ -173,6 +173,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete-cart/{rowId}', [CardController::class, 'destroy']);
     Route::get('/create-invoice', [CardController::class, 'createInvoice']);
     Route::get('/final-invoice', [CardController::class, 'finalInvoice']);
+    Route::get('/due-pay/{id}', [CardController::class, 'duePay']);
 
     // sales Reports
 
@@ -213,8 +214,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/view-setting', [SettingController::class, 'index']);
     Route::get('/edit-setting', [SettingController::class, 'update']);
 
-Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
 
 
 });

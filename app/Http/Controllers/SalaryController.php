@@ -95,13 +95,14 @@ class SalaryController extends Controller
         $data['emp_id'] = $request->emp_id;
         $data['month'] = $request->month;
         $data['year'] = $request->year;
+        $oldSalary=DB::table('salaries')->
         // $data['status'] = $request->status; // Corrected spelling to 'status'
         $data['advanced_salary'] = $request->advanced_salary;
         $data['paid_salary'] = $request->paid_salary;
-        echo "<pre>";
-        print_r($data);
-        // $data['due_salary'] = $request->due_salary; // Corrected variable name
-        // $SalaryStore = DB::table('salaries')->insert($data); // Corrected method call to `table`
+        // echo "<pre>";
+        // print_r($data);
+        $data['due_salary'] = $request->due_salary; // Corrected variable name
+        $SalaryStore = DB::table('salaries')->insert($data); // Corrected method call to `table`
         
     
         // Redirect the user to a relevant page

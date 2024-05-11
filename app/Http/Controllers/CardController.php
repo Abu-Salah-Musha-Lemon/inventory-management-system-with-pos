@@ -109,127 +109,6 @@ public function update(Request $request, $rowId)
 }
 
 
-// public function update(Request $request, $rowId)
-// {
-//     $qty = $request->qty;
-//     $dis = (int) $request->discount;
-//     $price = (int) $request->price;
-
-//     // Retrieve the cart item
-//     $cartItem = Cart::get($rowId);
-
-//     // Check if the cart item exists
-//     if (!$cartItem) {
-//         $notification = [
-//             'message' => 'Cart item not found.',
-//             'alert-type' => 'error'
-//         ];
-//         return Redirect()->back()->with($notification);
-//     }
-
-//     // Retrieve the cart item's quantity and id
-//     $cardQty = $cartItem->qty;
-//     $cardId = $cartItem->id;
-
-//     // Retrieve the product quantity from the database
-//     $productQty = DB::table('products')->where('id', $cardId)->value('product_qty');
-
-//     // Check if both product and cart item quantities are greater than 0
-//     if ($productQty !== null && $productQty > 0 && $cardQty > 0) {
-//         // Check if the product quantity is sufficient
-//         if ($productQty >= $qty) {
-//             if ($dis > 0 && $price > 0) { // Calculate discounted price
-//                 $discount = $price * (1 - ($dis / 100));
-//                 // Update cart item with new quantity and price
-//                 $update = Cart::update($rowId, [
-//                     'qty' => $qty,
-//                     'discount' => $discount // Update with discounted price
-//                 ]);
-//                 $notification = [
-//                     'message' => 'Product quantity and discount updated successfully',
-//                     'alert-type' => 'success'
-//                 ];
-//             } else {
-//                 // Update cart item with new quantity
-//                 $update = Cart::update($rowId, $qty);
-//                 $notification = [
-//                     'message' => 'Product quantity updated successfully',
-//                     'alert-type' => 'success'
-//                 ];
-//             }
-//             return Redirect()->back()->with($notification);
-//         } else {
-//             $notification = [
-//                 'message' => 'Product quantity is insufficient.',
-//                 'alert-type' => 'error'
-//             ];
-//         }
-//     } else {
-//         $notification = [
-//             'message' => 'Cart item not found or associated product quantity is insufficient.',
-//             'alert-type' => 'error'
-//         ];
-//     }
-
-//     return Redirect()->back()->with($notification);
-// }
-
-
-// old logic
-
-    // public function update(Request $request, $rowId)
-    // {
-    //    $qty=$request->qty;
-    //    $update = Cart::update($rowId,$qty);
-    //    $notification = array(
-    //     'message' => 'Added New Product Successfully ',
-    //     'alert-type' => 'success'
-    //     );
-    //    return Redirect()->back()->with($notification);
-    // }
-
-
-    // public function update(Request $request, $rowId)
-    // {
-    //    $qty=$request->qty;
-       
-    //    $cartItem = Cart::get($rowId);
-    //    $cardQty = $cartItem->qty;
-    //    $cardId = $cartItem->id;
-    //    $productQty = DB::table('products')->where('id', $cardId)->value('product_qty');
-
-    // //    var_dump($productQty);
-    //    exit;
-    //        // Check if the cart item exists and if it has an associated product
-    // if ($productQty>0&&$cardQty>0) {
-    //     if ($productQty>=$cardQty) {
-    //         $update = Cart::update($rowId, $qty);
-    //         $notification = [
-    //         'message' => 'Product quantity updated successfully',
-    //         'alert-type' => 'success'
-    //         ];
-    //         return Redirect()->back()->with($notification);
-    //     }else {
-    //         $notification = [
-    //             'message' => 'Cart item not found or associated product qty is not stock.',
-    //             'alert-type' => 'error'
-    //         ];
-    //     }
-  
-    // } 
-    //  else {
-    //     // Show an error notification if the cart item or its associated product is not found
-    //     $notification = [
-    //         'message' => 'Cart item not found or associated product qty is not stock.',
-    //         'alert-type' => 'error'
-    //     ];
-    // }
-    //    return Redirect()->back()->with($notification);
-    // }
-
-
-
-
     /**
      * Remove the specified resource from storage.
      */
@@ -285,7 +164,6 @@ public function update(Request $request, $rowId)
         $data['payment_status']=$request->payment_status;
         $data['pay']=$request->pay;
         $data['due']=$request->due;
-
         $order_id = DB::table('order')->insertGetId($data);
 
         if ($order_id) {
@@ -317,5 +195,40 @@ public function update(Request $request, $rowId)
             return redirect()->back()->with($notification);
         }
     }
+    public function duePay(Request $request, string $id) {
+        // Extract pay and due from the request
+        $newPay = (int) $request->pay;
+        $newDue = (int) $request->due;
+    
+        // Retrieve existing pay and due from the database
+        $order = DB::table('order')->find($id);
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+    
+        $oldPay = (int) $order->pay;
+        $oldDue = (int) $order->due;
+    
+        // Calculate final pay and due
+        $finalPay = $newPay + $oldPay;
+        $finalDue = $oldDue - $newPay;
+
+       $finalPay= DB::table('order')
+        ->where('id', $id)
+        ->update([
+            'pay' => $finalPay,
+            'due' => $finalDue
+        ]);
+        if($finalPay) {
+            $notification = array(
+                'message' => 'Due Pay Complete',
+                'alert-type' => 'Success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        // Output or use finalPay and finalDue as needed
+        //var_dump($finalDue);
+    }
+    
 
 }

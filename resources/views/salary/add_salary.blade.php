@@ -100,15 +100,12 @@
 													<label>Paid Salary</label>
 													<input type="text" class="form-control" name="paid_salary" id="paid_salary"
 															placeholder="Enter The paid salary ">
-															<span class='text-danger'>@error('paid_salary')@message()@enderror</span>
-												</div>>
-												
+															<span class='text-danger'>@error('paid_salary'){{$message}}@enderror</span>
+												</div>
 
 												<input type="hidden" name="status" value="success">
 
-												
-
-												<button type="submit" class="btn">
+												<button type="submit" class="btn btn-success waves-effect waves-light">
 														Submit
 												</button>
 												@endforeach

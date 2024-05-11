@@ -45,6 +45,7 @@
                                         <th>Total Products</th>
                                         <!-- <th>Quantity</th> -->
                                         <th>Payment Status</th>
+                                        <th>Due</th>
                                         <th>Order Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -61,6 +62,7 @@
                                         
 
                                         <td>{{$row->pay}}</td>
+                                        <td>{{$row->due}}</td>
                                         <td><span class="label label-success">{{$row->order_status}}</span></td>
                                         
                                         <td>
