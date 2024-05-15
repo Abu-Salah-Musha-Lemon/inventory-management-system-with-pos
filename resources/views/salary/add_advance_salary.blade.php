@@ -6,19 +6,7 @@
 	}
 </style>
 
-<div class="container">
 
-	<!-- Page-Title -->
-	<div class="row">
-			<div class="col-sm-12">
-					<h4 class="pull-left page-title">Welcome</h4>
-					<ol class="breadcrumb pull-right">
-							<li><a href="#">Moltran</a></li>
-							<li><a href="#">Mail</a></li>
-							<li class="active">Inbox</li>
-					</ol>
-			</div>
-	</div>
 
 	<div class="row "style="display:flex;justify-content:center;align-item:center;">
 					<!-- Basic example -->
@@ -93,7 +81,7 @@
 				</div>
 				<!-- col-->
 	</div>
-</div>
+
 
 
  @endsection

@@ -6,15 +6,6 @@
     }
 </style>
 
-    <div class="container">
-
-        <!-- Page-Title -->
-        <div class="row">
-            <div class="col-sm-12">
-                <h4 class="pull-left page-title">welcome</h4>
-            </div>
-        </div>
-
         <div class="row"style="display:flex;justify-content:center;align-item:center;">
             <!-- Basic example -->
             <div class="col-xl-10 col-lg-8 col-md-6 col-12 m-auto">

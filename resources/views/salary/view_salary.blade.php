@@ -1,6 +1,6 @@
 @extends('layout')
 @section('main')
-<div class="container">
+
 
 <div class="row">
 		<!-- Basic example -->
@@ -79,5 +79,5 @@
 						</div><!-- panel-body -->
 				</div> <!-- panel -->
 		</div> <!-- col-->
-</div>
+
     @endsection

@@ -93,19 +93,6 @@ calculateCashDue(); // This line should be placed after adding the event listene
 </script>
 
 
-        <div class="container">
-
-            <!-- Page-Title -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <h4 class="pull-left page-title">Invoice</h4>
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="#">Moltran</a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li class="active">Invoice</li>
-                    </ol>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -232,9 +219,6 @@ calculateCashDue(); // This line should be placed after adding the event listene
 
             </div>
 
-
-
-        </div> <!-- container -->
 
         <script>
             // Custom print function

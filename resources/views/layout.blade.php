@@ -59,7 +59,10 @@
 									<div class="text-center">
 										@php $setting=DB::table('settings')->get(); @endphp
 										@foreach($setting as $row)
-											<a href="{{URL::to('/')}}" class="logo"><img style="width: 50px; height: 50ox; object-fit: cover;border-radius: 50%;padding: 8px;" src="{{asset($row->logo_path)}}"><span>{{$row->name}}</span></a>
+											<a href="{{URL::to('/')}}" class="logo">
+												<img style="width: 50px; height: 50ox; object-fit: cover;border-radius: 50%;padding: 8px;" 
+												src="{{asset($row->logo_path)}}"><span>{{$row->name}}</span>
+											</a>
 										@endforeach
 									</div>
 							</div>
@@ -141,15 +144,15 @@
 									<div id="sidebar-menu">
 											<ul>
 													<li>
-															<a href="{{URL::to('dashboards')}}" class="waves-effect"><i class="md md-home"></i><span> Dashboard </span></a>
+															<a href="{{URL::to('dashboards')}}" class="waves-effect"><i class="ion-arrow-graph-up-right"></i><span> Dashboard </span></a>
 													</li>
 													<li>
-															<a href="{{route('pos')}}" class="waves-effect"><i class="md md-home"></i><span> POS </span></a>
+															<a href="{{route('pos')}}" class="waves-effect"><i class="ion-cash"></i><span> POS </span></a>
 													</li>
 
 
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-basket"></i> <span> Order </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="md md-add-shopping-cart"></i> <span> Order </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li ><a href="{{route('pendingOrder')}}">Pending Order</a></li>
 																	<li ><a href="{{route('paidOrder')}}">All Order Report</a></li>
@@ -159,7 +162,7 @@
 													</li>
 
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-basket"></i> <span> Sales Report </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="fa fa-bar-chart-o"></i> <span> Sales Report </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li class="active"><a href="{{route('allSalesReport')}}">All Sales Report</a></li>
 																	<li ><a href="{{route('todaySalesReport')}}">Today Sales Report</a></li>
@@ -185,14 +188,14 @@
 															</ul>
 													</li>
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-truck"></i> <span> Supplier </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="fa fa-truck"></i> <span> Supplier </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li class="active"><a href="{{route('supplier.add-supplier')}}">Add Supplier</a></li>
 																	<li><a href="{{route('supplier.all-supplier')}}">All Suppliers</a></li>
 															</ul>
 													</li>
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-cash-stack"></i> <span> Salaries </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="md md-account-balance-wallet"></i> <span> Salaries </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li class="active"><a href="{{route('salary.add-advance-salary')}}">Add Advance Salaries</a></li>
 																
@@ -201,7 +204,7 @@
 													</li>
 													
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-basket"></i> <span> Categories </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="md md-folder-open"></i> <span> Categories </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li ><a href="{{route('addCategories')}}">Add Categories</a></li>
 																	<li class="active"><a href="{{route('allCategories')}}">All Categories</a></li>
@@ -220,7 +223,7 @@
 													</li>
 
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-basket"></i> <span> Expense </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="md md-attach-money"></i> 💸<span> Expense </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li ><a href="{{route('addExpense')}}">Add Expense</a></li>
 																	<li ><a href="{{route('todayExpense')}}">Today Expense</a></li>
@@ -232,7 +235,7 @@
 													</li>
 
 													<li class="has_sub">
-															<a href="#" class="waves-effect"><i class="bi bi-basket"></i> <span> Attendance </span> <span class="pull-right"><i class="md md-add"></i></span></a>
+															<a href="#" class="waves-effect"><i class="fa fa-clock-o"></i> <span> Attendance </span> <span class="pull-right"><i class="md md-add"></i></span></a>
 															<ul class="list-unstyled">
 																	<li ><a href="{{route('takeAttendance')}}">Take Attendance</a></li>
 																	<li ><a href="{{route('allAttendance')}}">All Attendance</a></li>
@@ -263,8 +266,43 @@
 					<!-- ============================================================== -->                      
 					<div class="content-page">
 						<div class="content">
-								<!-- Content goes here -->
-								@yield('main')
+							<div class="container">
+
+								<!-- Page-Title -->
+								<?php
+// Define page title and breadcrumb array based on the current page
+$pageTitle = "Welcome"; // Default page title
+$breadcrumb = array(
+    array("text" => "Moltran", "link" => "#"),
+    array("text" => "Mail", "link" => "#"),
+    array("text" => "Inbox", "link" => "#")
+); // Default breadcrumb array
+
+// Function to output breadcrumb HTML
+function renderBreadcrumb($breadcrumb) {
+    echo '<ol class="breadcrumb pull-right">';
+    foreach ($breadcrumb as $item) {
+        echo '<li><a href="' . $item['link'] . '">' . $item['text'] . '</a></li>';
+    }
+    echo '</ol>';
+}
+?>
+
+								<div class="row">
+										<div class="col-sm-12">
+												<h4 class="pull-left page-title"><?php echo $pageTitle; ?></h4>
+												<ol class="breadcrumb pull-right">
+														<li><a href="#"> <?php renderBreadcrumb($breadcrumb); ?></a></li>
+														<!-- <li><a href="#">Mail</a></li>
+														<li class="active">Inbox</li> -->
+												</ol>
+										</div>
+								</div>
+
+									<!-- Content goes here -->
+									@yield('main')
+
+							</div>
 						</div>
 				</div>
 					<!-- ============================================================== -->
@@ -469,6 +507,22 @@
 			<script src="{{asset('js/jquery.todo.js')}}"></script>
 
 			<!-- Other scripts... -->
+			<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+				<script>
+				$(document).ready(function(){
+						var currentUrl = window.location.href;
+
+						// Loop through each link and check if its href matches the current URL
+						$('ul.list-unstyled li a').each(function() {
+								var linkUrl = $(this).attr('href');
+								if (currentUrl.indexOf(linkUrl) !== -1) {
+										$(this).parent().addClass('active'); // Add 'active' class to the parent <li> element
+								}
+						});
+				});
+				</script>
+
+
 			<script type="text/javascript">
 				$(document).ready(function () {
 						$('#datatable').dataTable();

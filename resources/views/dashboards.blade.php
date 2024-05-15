@@ -8,19 +8,6 @@
 	}
 </style>
 
-<div class="container">
-
-	<!-- Page-Title -->
-	<div class="row">
-			<div class="col-sm-12">
-					<h4 class="pull-left page-title">welcome</h4>
-					<ol class="breadcrumb pull-right">
-							<li><a href="#">Moltran</a></li>
-							<li><a href="#">Mail</a></li>
-							<li class="active">Inbox</li>
-					</ol>
-			</div>
-	</div>
 
 		@php
 		$day=date("d-m-y");
@@ -267,7 +254,6 @@
 
 </div>
 
-</div>
 
 
 @endsection
