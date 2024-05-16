@@ -50,13 +50,7 @@
                     <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Enter address" value="{{old('address')}}">
                     <span class='text-danger'>@error('address'){{ $message }} @enderror</span>
                 </div>
-                <div class="form-group">
-                    <label>shopeName</label>
-                    <input type="text" class="form-control @error('shopeName') is-invalid @enderror" name="shopeName" placeholder="Enter shopeName" value="{{old('shopeName')}}">
-                    <span class='text-danger'>@error('shopeName'){{ $message }} @enderror</span>
-                </div>
-
-                
+               
                 <div class="form-group">
                     <label>Account Holder Name</label>
                     <input type="text" class="form-control @error('account_holder') is-invalid @enderror" name="account_holder" placeholder="Enter Account Holder Name" value="{{old('account_holder')}}">
@@ -84,7 +78,12 @@
                             <span>Photo</span>
                         </div>
                         <img id="image" style="width: 100px;height: 100px;object: cover;" /><br />
-                        <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);"value="{{old('photo')}}" />
+
+                        <div class="fileUpload btn btn-success waves-effect waves-light" style="margin:10px 0 10px 0">
+                                <span><i class="ion-upload m-r-5"></i>Upload</span>
+                                <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);"value="{{old('photo')}}" />
+                        </div>
+                        
                 </div>
 
                 <button type="submit" class="btn btn-success waves-effect waves-light">Submit</button>

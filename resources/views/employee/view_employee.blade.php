@@ -12,7 +12,7 @@
             <div class=" col-md-6 col-lg-8 col-xl-10">
         <div class="panel panel-success">
             <div class="panel-heading " style="display: flex;justify-content: space-between;">
-                    <h3 class="panel-title">View Employee</h3>
+                    <h3 class="panel-title text-white">View Employee</h3>
                     <a class="panel-title fs-4" href="{{URL::to('/all-employee')}}">
                         <i class="bi bi-box-arrow-in-left"style="font-size:24px;color:white;"></i></a>
             </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <label>NID</label>
-                        <input type="text" class="form-control" name="nid" placeholder="Enter NID Number" value="@base64_decode($single->nid)" disabled>
+                        <input type="text" class="form-control" name="nid" placeholder="Enter NID Number" value="{{$single->nid}}" disabled>
 
                     </div>
                     <!-- Photo -->

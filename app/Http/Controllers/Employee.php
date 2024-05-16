@@ -6,19 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Crypt;
-
-
-
+use Illuminate\Contracts\Encryption\DecryptException;
 
 
 class Employee extends Controller
 {
     //
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function addEmployee() {
         return view('employee.add_employee');
@@ -57,8 +55,10 @@ class Employee extends Controller
         
         $data['vacation']=$request->vacation;
         $data['city']=$request->city;
-        $data['nid']=base64_encode($request->nid);
-        // $data['nid']=Crypt::encryptString($request->salary);
+        // $data['nid']=base64_encode($request->nid);
+        // $data['nid'] = Crypt::encryptString($request->nid);
+        $data['nid'] = $request->nid;
+
 
         $image = $request->file('photo');
         // var_export($data);
@@ -102,33 +102,10 @@ class Employee extends Controller
         $single = DB::table('employees')
                         ->where('id',$id)
                         ->first();
-                        // $single->nid = Crypt::decryptString($single->nid);
-                        //return $single;
-                        // var_dump( $singleUser);
-                        return view('employee.view_employee',compact('single'));
+    
+           return view('employee.view_employee',compact('single'));
     }
 
-//     public function viewEmployee($id) 
-// {
-//     try {
-//         $single = DB::table('employees')
-//                     ->where('id', $id)
-//                     ->first();
-
-//         // Decrypt the NID
-//         $single->nid = Crypt::decryptString($single->nid);
-
-//         return view('employee.view_employee', compact('single'));
-//     } catch (QueryException $e) {
-//         // Handle query exceptions
-//         // You can log the error or show an error message to the user
-//         return response()->view('errors.500', [], 500);
-//     } catch (\Throwable $e) {
-//         // Handle other exceptions
-//         // You can log the error or show an error message to the user
-//         return response()->view('errors.500', [], 500);
-//     }
-// }
 
     // delete single employee
     public function deleteEmployee($id) {
@@ -164,7 +141,6 @@ class Employee extends Controller
         $editUser = DB::table('employees')
                         ->where('id',$id)
                         ->first();
-                        $editUser->nid = Crypt::decryptString($editUser->nid);
                 return view('employee.edit_employee',compact('editUser'));      
                     
     }

@@ -20,6 +20,21 @@ class EmployeeFactory extends Factory
      *
      * @return array
      */
+    private function generateRandomNID() {
+        $nid = '';
+        $minLength = 9;
+        $maxLength = 10;
+        
+        // Generate a random number within the specified length range
+        $length = $this->faker->numberBetween($minLength, $maxLength);
+        
+        // Generate random digits and concatenate them to form the NID
+        for ($i = 0; $i < $length; $i++) {
+            $nid .= $this->faker->randomDigit;
+        }
+        
+        return $nid;
+    }
     public function definition()
     {
         return [
@@ -32,8 +47,9 @@ class EmployeeFactory extends Factory
             'salary' => $this->faker->numberBetween(20000, 80000),
             'vacation' => $this->faker->numberBetween(10, 30),
             'city' => $this->faker->city,
-            'nid' => $this->faker->uuid,
+            'nid' => $this->generateRandomNID(),
         ];
     }
+   
     
 }

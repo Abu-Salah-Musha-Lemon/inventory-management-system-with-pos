@@ -11,12 +11,12 @@
         <!-- Basic example -->
         <div class=" col-md-6 col-lg-8 col-xl-10">
             <div class="panel panel-success">
-                                        <div class="panel-heading " style="display: flex;justify-content: space-between;">
-                                                            <h3 class="panel-title">View Supplier</h3>
-                                                            <a class="panel-title fs-4" href="{{URL::to('/all-supplier')}}">
-                                                                    <i class="bi bi-box-arrow-in-left"style="font-size:24px;color:white;font-weight:800;"></i>
-                                                            </a>
-                                            </div>
+                <div class="panel-heading " style="display: flex;justify-content: space-between;">
+                        <h3 class="panel-title text-white">View Supplier</h3>
+                        <a class="panel-title fs-4" href="{{URL::to('/all-supplier')}}">
+                                <i class="bi bi-box-arrow-in-left"style="font-size:24px;color:white;font-weight:800;"></i>
+                        </a>
+                    </div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label>Name</label>

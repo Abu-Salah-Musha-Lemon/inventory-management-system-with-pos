@@ -75,7 +75,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <button type="submit" onclick="export_data('datatable', 'lemon', 'lemon')">Export</button>
+                           
                         </div>
                         
                     </div>

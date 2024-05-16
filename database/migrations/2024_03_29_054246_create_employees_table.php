@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('salary');
             $table->string('vacation');
             $table->string('city');
-            $table->string('nid');
+            $table->bigInteger('nid')->unsigned()->nullable(); // Change data type to bigInteger
             $table->timestamps();
         });
         Schema::table('employees', function (Blueprint $table) {

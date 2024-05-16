@@ -50,12 +50,7 @@
                             <input type="text" class="form-control" name="address" id="address" placeholder="Enter address"value="{{$editUser->address}}">
                                                                     <span class='text-danger'>@error('address'){{ $message }} @enderror</span>
                         </div>
-                        
-                        <div class="form-group">
-                            <label>shopeName</label>
-                            <input type="text" class="form-control" name="shopeName" id="shopeName" value="{{$editUser->shopeName}}" placeholder="Enter shopeName">
-                                                                    <span class='text-danger'>@error('shopeName'){{ $message }} @enderror</span>
-                        </div>
+
                     
                         <div class="form-group">
                         <label>Account Holder Name</label>
@@ -85,12 +80,15 @@
                                     <span>Photo</span>
                             </div>
                             <img id="image" style="width: 100px;height: 100px;object: cover;"  src="{{ $editUser->photo}}"/><br />
-                            <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+                            <div class="fileUpload btn btn-success waves-effect waves-light" style="margin:10px 0 10px 0">
+                                    <span><i class="ion-upload m-r-5"></i>Upload</span>
+                                    <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+                            </div>
                             <input type="hidden" name="old_photo" value="{{ $editUser->photo }}">
                         </div>
                     </div>
 
-                        <button type="submit" class="btn">Update</button>
+                        <button type="submit" class="btn btn-info waves-effect waves-light">Update</button>
 
                 </form>
 

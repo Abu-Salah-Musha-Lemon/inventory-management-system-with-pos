@@ -216,30 +216,6 @@ class ProductController extends Controller
 
     }
 
-    // public function updateProductQty(Request $request, $id) {
-
-    //     $old_qty = DB::table('products')->where('id', $id)->value('product_qty');
-    //     $new_qty = $request->updateQty;
-    //     $updateQty = $old_qty + $new_qty;
-    
-    //     $updateQtyValue = DB::table('products')
-    //                         ->where('id', $id)
-    //                         ->update(['product_qty' => $updateQty]);
-    
-    //     if ($updateQtyValue) {
-    //         $notification = array(
-    //             'message' => 'Quantity Successfully Updated',
-    //             'alert-type' => 'success'
-    //         );
-    //         return redirect()->route('updateProductQtyView')->with($notification);
-    //     } else {
-    //         $notification = array(
-    //             'message' => 'Quantity did not Update',
-    //             'alert-type' => 'error'
-    //         );
-    //         return redirect()->route('updateProductQtyView')->with($notification);
-    //     }
-    // }
 
     public function updateProductQty(Request $request, $id) {
        
@@ -277,12 +253,20 @@ class ProductController extends Controller
         $delete = DB::table('products')
         ->where('id',$id)
         ->first();
+
         $photo=$delete->product_image;
+        if ($photo) {
+            
+            unlink($photo);
+        }
         // var_dump( $singleUser);
-        unlink($photo);
         $deleteUser=DB::table('products')
                     ->where('id',$id)
                     ->delete();
-                    return redirect()->route('allProduct');
+                    $notification = array(
+                        'message' =>'Product delete successfully',
+                            'alert-type' => 'success'
+                        );
+                    return redirect()->back()->with($notification);
     }
 }

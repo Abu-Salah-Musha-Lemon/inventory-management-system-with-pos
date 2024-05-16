@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'product_code' => $this->faker->unique()->ean8,
             'product_garage' => $this->faker->word,
             'product_route' => $this->faker->word,
-            'product_image' => 'default.jpg', // assuming you have a default product image
+            'product_image' => '', // assuming you have a default product image
             'product_qty' => $this->faker->numberBetween(1, 100),
             'buy_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'expire_date' => $this->faker->dateTimeBetween('now', '+1 year'),

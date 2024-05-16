@@ -40,7 +40,7 @@ class customerController extends Controller
         $data['email']=$request->email;
         $data['phone']=$request->phone;
         $data['address']=$request->address;
-        $data['shopeName']=$request->shopeName;
+        //$data['shopeName']=$request->shopeName;
         // $data['photo']=$request->photo;
         $data['account_holder']=$request->account_holder;
         
@@ -125,7 +125,7 @@ class customerController extends Controller
         $data['email']=$request->email;
         $data['phone']=$request->phone;
         $data['address']=$request->address;
-        $data['shopeName']=$request->shopeName;
+       // $data['shopeName']=$request->shopeName;
         $data['account_holder']=$request->account_holder;
         
         $data['account_number']=$request->account_number;

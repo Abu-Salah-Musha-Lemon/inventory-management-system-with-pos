@@ -80,9 +80,13 @@
 																			<span>Photo</span>
 															</div>
 															<img id="image" style="width: 100px;height: 100px;object: cover;"  src="{{ $editUser->photo}}"/><br />
-															<input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+															<div class="fileUpload btn btn-success waves-effect waves-light" style="margin-top:10px">
+																	<span><i class="ion-upload m-r-5"></i>Upload</span>
+																	<input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+															</div>
 															<input type="hidden" name="old_photo" value="{{ $editUser->photo }}">
 													</div>
+													
 											</div>
 
 											<button type="submit" class="btn btn-purple waves-effect waves-light w-sm m-b-5">Update</button>

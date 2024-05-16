@@ -27,7 +27,7 @@ class CustomerFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
-            'shopeName' => $this->faker->company,
+            //'shopeName' => $this->faker->company,
             'account_holder' => $this->faker->name,
             'account_number' => $this->faker->bankAccountNumber,
             'bank_name' => $this->faker->company,

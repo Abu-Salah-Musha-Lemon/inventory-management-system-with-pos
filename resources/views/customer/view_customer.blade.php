@@ -39,11 +39,6 @@
                         <label>Address</label>
                         <input type="text" class="form-control" name="address" placeholder="Enter address"value="{{$single->address}}"disabled>
                     </div>
-
-                    <div class="form-group">
-                        <label>shopeName</label>
-                        <input type="text" class="form-control" name="shopeName" value="{{$single->shopeName}}" placeholder="Enter shopeName"disabled>
-                    </div>
                     
                     <div class="form-group">
                     <label>Account Holder Name</label>

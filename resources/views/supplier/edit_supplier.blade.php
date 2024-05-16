@@ -12,7 +12,7 @@
         <div class="col-xl-10 col-lg-8 col-md-6 col-12 m-auto">
             <div class="panel panel-info">
                 <div class="panel-heading " style="display: flex;justify-content: space-between;">
-                    <h3 class="panel-title">Edit Supplier</h3>
+                    <h3 class="panel-title text-white">Edit Supplier</h3>
                     <a class="panel-title fs-4" href="{{URL::to('/all-supplier')}}">
                         <i class="bi bi-box-arrow-in-left"style="font-size:24px;color:white;"></i>
                     </a>
@@ -103,9 +103,12 @@
                                     <span>Photo</span>
                                 </div>
                                 <img id="image" style="width: 100px;height: 100px;object: cover;" src="{{ $editUser->photo}}"/><br />
-                                <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+                                <div class="fileUpload btn btn-success waves-effect waves-light" style="margin-top:10px">
+                                        <span><i class="ion-upload m-r-5"></i>Upload</span>
+                                        <input type="file" name="photo" id="photo" accept="image/*" class="upload" class="form-control" onchange="readURL(this);" />
+                                </div>
                                 <input type="hidden" name="photo" value="{{ old('$editUser->photo') }}">
-																<span class="text-danger">@error('photo') {{$message}}@enderror <span>
+								<span class="text-danger">@error('photo') {{$message}}@enderror <span>
                         </div>
 <br>
                         <button type="submit" class="btn btn-success btn-custom waves-effect waves-light">Update</button>
