@@ -9,7 +9,7 @@
 
         <link rel="shortcut icon" href="images/favicon_1.ico">
 
-        <title>Moltran - Responsive Admin Dashboard Template</title>
+        <title>Stoke Genie</title>
 
         <!-- Base Css Files -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -36,16 +36,9 @@
 				<!-- Include DataTables CSS -->
 				<link   href="{{ asset('assets/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css">
 
-        <script src="js/modernizr.min.js"></script>
-				<style>
-        /* Custom class to hide scrollbar when not scrolling */
-        .hide-scrollbar {
-            overflow: hidden;
-        }
-    </style>
+        <script src="{{ asset('js/modernizr.min.js') }}"></script>
+			
     </head>
-
-
 
     <body class="fixed-left">
         
@@ -57,7 +50,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="" class="logo"><i class="md md-terrain"></i> <span>Moltran </span></a>
+                        <a href="{{URL::to('/')}}" class="logo"><i class="md md-terrain"></i> <span>Stoke Genie </span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -252,26 +245,49 @@
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
-            <!-- ============================================================== -->                      
-            <div class="content-page">
+            <!-- ============================================================== -->    
+						<style>
+							.scrollwhile {
+								/* display: none; */
+								/* position: fixed; */
+								/* bottom: 20px; */
+								/* right: 20px; */
+								background-color: rgba(0, 0, 0, 0.5);
+								color: white;
+								/* padding: 10px; */
+								border-radius: 5px;
+								transition: transform 0.3s ease;
+						}
+						.scrollwhile.active {
+								display: block;
+						}
+
+						</style>                  
+            <div class="content-page ">
                 <!-- Start content -->
-                <div class="content">
-                    <div class="container">
+                <div class="content ">
+                    <div class="container ">
 
                         <!-- Page-Title -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="pull-left page-title">Blank Page</h4>
-                                <ol class="breadcrumb pull-right">
-                                    <li><a href="#">Moltran</a></li>
-                                    <li><a href="#">Pages</a></li>
-                                    <li class="active">Blank Page</li>
-                                </ol>
-                            </div>
-                        </div>
+												<div class="row">
+													<div class="col-sm-12">
+															<h4 class="pull-left page-title">Welcome</h4>
+															<ol class="breadcrumb pull-right">
+																	<li><a href="{{URL::to('/')}}">Genie</a></li>
+																	<li><a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>">Home</a></li>
+																	<?php if(isset($_SERVER['PATH_INFO'])): ?>
+																		<?php $path_info = ($_SERVER['PATH_INFO'])?>
+																			<li class="active"><?php echo trim($path_info, '/'); ?></li>
+																	<?php endif; ?>
+															</ol>
+													</div>
+											</div>
 
-                    
-						@yield('main');
+
+            <div class="">
+							@yield('main');
+
+						</div> 
 
 
                     </div> <!-- container -->
@@ -279,95 +295,13 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © Moltran.
+								© <?php echo date('Y')?> Develop By ASMLemon
                 </footer>
 
             </div>
             <!-- ============================================================== -->
             <!-- End Right content here -->
             <!-- ============================================================== -->
-
-
-            <!-- Right Sidebar -->
-            <div class="side-bar right-bar nicescroll">
-                <h4 class="text-center">Chat</h4>
-                <div class="contact-list nicescroll">
-                    <ul class="list-group contacts-list">
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Chadengle</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Tomaslau</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Stillnotdavid</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Kurafire</span>
-                                <i class="fa fa-circle online"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Shahedk</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Adhamdannaway</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#">
-                                <div class="avatar">
-                                    <img src="" alt="">
-                                </div>
-                                <span class="name">Ok</span>
-                                <i class="fa fa-circle away"></i>
-                            </a>
-                            <span class="clearfix"></span>
-                        </li>
-                   
-                    </ul>  
-                </div>
-            </div>
-            <!-- /Right-bar -->
 
 
         </div>
@@ -397,20 +331,6 @@
 
         <!-- CUSTOM JS -->
         <script src="{{asset('js/jquery.app.js')}}"></script>
-				<script>
-       window.addEventListener("scroll", function() {
-            console.log("Scroll event detected!");
-            var scrollBar = document.body;
-            // Check if scrolling is happening
-            if (scrollBar.scrollTop > 0) {
-                console.log("Scrolling detected!");
-                // Add the class to hide scrollbar
-                scrollBar.classList.add("hide-scrollbar");
-            } else {
-                // Remove the class to show scrollbar
-                scrollBar.classList.remove("hide-scrollbar");
-            }})
-    </script>
     <script>
 					/* Toastr Notifications */
 					$(document).ready(function () {
