@@ -61,13 +61,13 @@
                         <input type="text" class="form-control" name="city" placeholder="Enter City"value="{{$single->city}}"disabled>
                     </div>
                     <!-- Photo -->
-                                                <div class="form-group my-2">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                    <span>Photo</span>
-                            </div>
-                            <img id="image" style="width: 100px;height: 100px;object: cover;"  src="{{ $single->photo}}"/><br />
-                            
+                        <div class="form-group my-2">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                        <span>Photo</span>
+                                </div>
+                                <img id="image" style="width: 100px;height: 100px;object: cover;"  src="{{ $single->photo}}"/><br />
+                                
                         </div>
 
             </div><!-- panel-body -->

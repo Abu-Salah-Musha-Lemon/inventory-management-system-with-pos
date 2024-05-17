@@ -33,7 +33,7 @@ class CustomerFactory extends Factory
             'bank_name' => $this->faker->company,
             'bank_branch' => $this->faker->city,
             'city' => $this->faker->city,
-            'photo' => 'default.jpg', // assuming you have a default photo
+            'photo' => '', // assuming you have a default photo
         ];
     }
 }

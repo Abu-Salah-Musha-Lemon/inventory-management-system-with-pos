@@ -283,24 +283,18 @@ align-items: center; ">
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <th>Action</th>
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Qty</th>
                                 <th>Code</th>
                                 <th>Price</th>
                                 <th>Route</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($product as $row)
                             <tr style="text-align:center">
-                                <td><img src="{{ asset($row->product_image) }}" style="width:40px;height:40px;object:cover;"></td>
-                                <td>{{ $row->product_name }}</td>
-                                <td>{{ $row->product_qty }}</td>
-                                <td>{{ $row->product_code }}</td>
-                                <td>{{ $row->selling_price }} ৳</td>
-                                <td>{{ $row->product_route }}</td>
                                 <td>
                                     <form action="{{ URL::to('/add-card') }}" method="post">
                                         @csrf
@@ -313,6 +307,12 @@ align-items: center; ">
                                         </button>
                                     </form>
                                 </td>
+                                <td><img src="{{ asset($row->product_image) }}" style="width:40px;height:40px;object:cover;"></td>
+                                <td>{{ $row->product_name }}</td>
+                                <td>{{ $row->product_qty }}</td>
+                                <td>{{ $row->product_code }}</td>
+                                <td>{{ $row->selling_price }} ৳</td>
+                                <td>{{ $row->product_route }}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -37,7 +37,7 @@ class supplierFactory extends Factory
             'phone' => $this->phoneNumber(), 
             'address' => $this->faker->address,
             'type' => $this->faker->randomElement(['Distributer', 'Whole Seller', 'Broker']), // Example types
-            'photo' => 'default.jpg', // Assuming you have a default photo
+            'photo' => '', // Assuming you have a default photo
             'shopeName' => $this->faker->company,
             'account_holder' => $this->faker->name,
             'account_number' => $this->faker->bankAccountNumber,
