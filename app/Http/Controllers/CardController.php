@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cart;
 use DB;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewInvoiceNotification;
+
 class CardController extends Controller
 {
     /**
@@ -182,6 +186,53 @@ public function update(Request $request, $rowId)
                 ->decrement('product_qty', $row->qty);
             }
             Cart::destroy();
+
+            $customerId = $request->customer_id;
+
+            // Debugging: Check if $customerId has the correct value
+            // echo '<pre>';
+            // var_dump($customerId);
+            
+            $customer = DB::table('order')
+                ->join('customers',  'customers.id','order.customer_id')
+                ->select('customers.name','order.id')
+                ->where('order.customer_id', $customerId)
+               
+                ->value('customer.name'); // Fetch the first result
+            
+            // Debugging: Check if $customer is null or contains data
+            // echo '<pre>';
+            // var_dump($customer);
+            
+            // exit;
+            
+
+           // exit;
+        //    if ($customer) {
+        //        $customerName = $customer->name;
+        //        var_dump($customerName);
+        //        exit;
+               
+               try {
+                   
+                    $userEmail=DB::table('users')->get('email');
+                    $adminEmail = 'lemonahmed065@gmail.com'; // Replace with your admin's email address
+                    Mail::to($userEmail)->send(new NewInvoiceNotification($customer, $request->total));
+                    $notification = [
+                        'message' => 'Invoice Created Successfully,  send email notification to admin',
+                        'alert-type' => 'success'
+                    ];
+                    return redirect()->route('pendingOrder')->with($notification);
+                } catch (\Exception $e) {
+                    // Handle email sending errors
+                    $notification = [
+                        'message' => 'Invoice Created Successfully, but failed to send email notification to admin',
+                        'alert-type' => 'warning'
+                    ];
+                    return redirect()->route('pendingOrder')->with($notification);
+                }
+           // }
+
             $notification = array(
                 'message' => 'Invoice Created Successfully ',
                 'alert-type' => 'success'
