@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="Abu Salah Musha Lemon ">
-		<link rel="shortcut icon" href="images/favicon_1.ico">
+		<link rel="shortcut icon" href="images/favicon.ico">
 		<title>Genie</title>
 
-        <link rel="shortcut icon" href="images/favicon_1.ico">
+        <link rel="shortcut icon" href="images/favicon.ico">
 
         <title>Stoke Genie</title>
 
@@ -50,7 +50,11 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="{{URL::to('/')}}" class="logo"><i class="md md-terrain"></i> <span>Stoke Genie </span></a>
+                        <a href="{{URL::to('/')}}" class="logo">
+													<!-- <img style="width:50px; height:50px" src="{{asset('images/logo/StockGenie.svg')}}" alt="" srcset=""> -->
+													<img style="width:50px; height:50px" src="{{ asset('images/logo/StockGenie.svg') }}" alt="Logo">
+
+												</a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
