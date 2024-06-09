@@ -52,7 +52,7 @@
                     <div class="text-center">
                         <a href="{{URL::to('/')}}" class="logo">
 													<!-- <img style="width:50px; height:50px" src="{{asset('images/logo/StockGenie.svg')}}" alt="" srcset=""> -->
-													<img style="width:50px; height:50px" src="{{ asset('images/logo/StockGenie.svg') }}" alt="Logo">
+													<img style="width: 70px;height: 70px; padding: 6px;" src="{{ asset('images/logo/StockGenie.png') }}" alt="Logo">
 
 												</a>
                     </div>
