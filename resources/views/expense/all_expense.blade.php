@@ -23,7 +23,7 @@
 										<div class="row">
 
 												<div class="col-md-12 col-sm-12 col-xs-12">
-														<table id="datatable" class="table table-striped table-bordered">
+														<table id="dataTable" class="table table-striped table-bordered">
 																<thead>
 																		<tr>
 																				<th>Expense Details</th>

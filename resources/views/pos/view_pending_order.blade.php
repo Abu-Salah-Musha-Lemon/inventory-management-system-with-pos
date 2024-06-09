@@ -60,6 +60,10 @@
                             <input type="number" id="dueNew" name="due" class="form-control" step="0.01" >
                            
                         </div>
+                        <div class="col-md-4">
+                            <label for="returnAmount">Return Amount</label>
+                            <input type="number" id="returnAmount" name="returnAmount" class="form-control" step="0.01" readonly>
+                        </div>
                     </div>
                 </div> 
                 <input type="hidden" name=""id= "oldDue" value="{{$order->due}}"step="0.01">
@@ -75,22 +79,26 @@
 </div><!-- /.modal -->
 <script>
     function calculateCashDue() {
-    let paymentAmount = document.getElementById('pay').value;
-    let totalAmount = document.getElementById('oldDue').value.replace(/,/g, '');
-    // console.log(totalAmount);
-    // console.log(paymentAmount);
-    let cashDue = totalAmount - paymentAmount;
-    console.log(cashDue);
-    document.getElementById('dueNew').value = cashDue.toFixed(2);
-}
+        let paymentAmount = parseFloat(document.getElementById('pay').value) || 0;
+        let totalAmount = parseFloat(document.getElementById('oldDue').value.replace(/,/g, '')) || 0;
+        
+        let cashDue = totalAmount - paymentAmount;
+        let returnAmount = 0;
 
-document.getElementById('pay').addEventListener('input', calculateCashDue);
+        if (cashDue < 0) {
+            returnAmount = Math.abs(cashDue);
+            cashDue = 0;
+        }
 
-calculateCashDue(); // This line should be placed after adding the event listener
+        document.getElementById('dueNew').value = cashDue.toFixed(2);
+        document.getElementById('returnAmount').value = returnAmount.toFixed(2);
+    }
 
+    document.getElementById('pay').addEventListener('input', calculateCashDue);
 
-   
+    calculateCashDue(); // This line should be placed after adding the event listener
 </script>
+
 
 
 
@@ -184,9 +192,7 @@ calculateCashDue(); // This line should be placed after adding the event listene
                             <div class="row" style="border-radius: 0px;">
 
                                 <div class="col-md-3">
-                                    <p class="text-right"><b>Payment Method:</b> {{$order->payment_status}} ৳</p>
-                                    <p class="text-right"><b>Paid:</b> {{$order->pay}} ৳</p>
-                                    <p class="text-right"><b>Due:</b> {{$order->due}} ৳</p>
+                                    
                                 </div>
                                 <div class="col-md-3 col-md-offset-9">
                                     <p class="text-right"><b>Sub-total:</b> {{$order->sub_total}} ৳</p>
@@ -194,7 +200,14 @@ calculateCashDue(); // This line should be placed after adding the event listene
                                     <p class="text-right">Total Qty: {{$order->total_products}}</p>
                                     <p class="text-right">Tax: {{$order->vat}}</p>
                                     <hr>
-                                    <h3 class="text-right">Total : {{$order->total}}</h3>
+                                    <h4 class="text-right">Grand Total : {{$order->total}}</h4>
+                                    <hr>
+                                    <p class="text-right"><b>Payment Method:</b> {{$order->payment_status}} ৳</p>
+                                    <p class="text-right"><b>Payment:</b> {{$order->pay}} ৳</p>
+                                    <p class="text-right"><b>Due:</b> {{$order->due}} ৳</p>
+                                    <hr>
+                                    <h4 class="text-right"><b>Return :</b> {{$order->returnAmount}} ৳</h4>
+                                    
                                 </div>
                             </div>
                             <hr>
@@ -218,7 +231,26 @@ calculateCashDue(); // This line should be placed after adding the event listene
                 </div>
 
             </div>
-
+            <style>
+                @media print {
+                    body * {
+                        visibility: hidden;
+                    }
+                    #invoice, #invoice * {
+                        visibility: visible;
+                    }
+                    #invoice {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 210mm; /* Set the desired width (e.g., A4 size) */
+                        height: 297mm; /* Set the desired height (e.g., A4 size) */
+                        margin: 0;
+                        padding: 20mm; /* Add padding if needed */
+                        box-sizing: border-box;
+                    }
+                }
+            </style>
 
         <script>
             // Custom print function

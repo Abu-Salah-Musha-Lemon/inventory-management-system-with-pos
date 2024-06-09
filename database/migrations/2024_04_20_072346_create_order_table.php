@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('payment_status');
             $table->string('pay')->nullable();
             $table->string('due')->nullable();
+            $table->string('returnAmount')->nullable();
             $table->timestamps();
         });
     }

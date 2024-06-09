@@ -168,6 +168,7 @@ public function update(Request $request, $rowId)
         $data['payment_status']=$request->payment_status;
         $data['pay']=$request->pay;
         $data['due']=$request->due;
+        $data['returnAmount']=$request->returnAmount;
         $order_id = DB::table('order')->insertGetId($data);
 
         if ($order_id) {
@@ -246,39 +247,53 @@ public function update(Request $request, $rowId)
             return redirect()->back()->with($notification);
         }
     }
+ 
+    
     public function duePay(Request $request, string $id) {
+        // Validate the input data
+        $request->validate([
+            'pay' => 'required|numeric|min:0',
+            'due' => 'required|numeric|min:0',
+            'returnAmount' => 'required|numeric|min:0',
+        ]);
+    
         // Extract pay and due from the request
-        $newPay = (int) $request->pay;
-        $newDue = (int) $request->due;
+        $newPay = (float) $request->pay;
+        $newDue = (float) $request->due;
+        $returnAmount = (float) $request->returnAmount;
     
         // Retrieve existing pay and due from the database
-        $order = DB::table('order')->find($id);
+        $order = DB::table('order')->find($id); // Assuming the table name is 'orders'
         if (!$order) {
             return response()->json(['error' => 'Order not found'], 404);
         }
     
-        $oldPay = (int) $order->pay;
-        $oldDue = (int) $order->due;
+        $oldPay = (float) $order->pay;
+        $oldDue = (float) $order->due;
     
         // Calculate final pay and due
         $finalPay = $newPay + $oldPay;
         $finalDue = $oldDue - $newPay;
-
-       $finalPay= DB::table('order')
-        ->where('id', $id)
-        ->update([
-            'pay' => $finalPay,
-            'due' => $finalDue
-        ]);
-        if($finalPay) {
+        $finalDue = max(0, $finalDue); // Ensure final due is not negative
+    
+        // Update the order in the database
+        $updateSuccess = DB::table('order')
+            ->where('id', $id)
+            ->update([
+                'pay' => $finalPay,
+                'due' => $finalDue,
+                'returnAmount' => $returnAmount
+            ]);
+    
+        if ($updateSuccess) {
             $notification = array(
                 'message' => 'Due Pay Complete',
-                'alert-type' => 'Success'
+                'alert-type' => 'success'
             );
             return redirect()->back()->with($notification);
         }
-        // Output or use finalPay and finalDue as needed
-        //var_dump($finalDue);
+    
+        return response()->json(['error' => 'Failed to update the order'], 500);
     }
     
 

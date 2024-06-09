@@ -54,6 +54,10 @@ width:auto;
 								<input type="number" id="due" name="due" class="form-control" step="0.01">
 								<span class="text-danger fs-bolder">@error('due'){{ $message }} @enderror</span>
 						</div>
+						<div class="col-md-4">
+								<label for="returnAmount">Return Amount</label>
+								<input type="number" id="returnAmount" name="returnAmount" class="form-control" step="0.01" readonly>
+						</div>
 				</div>
 		</div> 
 		<input type="hidden" name="customer_id" value="{{ $customer->id }}">
@@ -77,18 +81,23 @@ width:auto;
 </div><!-- /.modal -->
 <script>
 function calculateCashDue() {
-		let paymentAmount = document.getElementById('pay').value;
-		let totalAmount = document.getElementById('total').value.replace(/,/g, '');
-		let cashDue = totalAmount - paymentAmount;
-		document.getElementById('due').value = cashDue.toFixed(2);
-		}
+	let paymentAmount = parseFloat(document.getElementById('pay').value) || 0;
+	let totalAmount = parseFloat(document.getElementById('total').value.replace(/,/g, '')) || 0;
+	let cashDue = totalAmount - paymentAmount;
+	let returnAmount = 0;
 
-		document.getElementById('pay').addEventListener('input', calculateCashDue);
+	if (cashDue < 0) {
+		returnAmount = Math.abs(cashDue);
+		cashDue = 0;
+	}
 
-		calculateCashDue(); // This line should be placed after adding the event listener
+	document.getElementById('due').value = cashDue.toFixed(2);
+	document.getElementById('returnAmount').value = returnAmount.toFixed(2);
+}
 
+document.getElementById('pay').addEventListener('input', calculateCashDue);
 
-
+calculateCashDue(); // This line should be placed after adding the event listener
 </script>
 
 <div class="row">
