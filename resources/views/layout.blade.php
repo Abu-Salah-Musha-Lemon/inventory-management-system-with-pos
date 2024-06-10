@@ -14,12 +14,13 @@
         <!-- Base Css Files -->
 				 
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
- <!-- data table  -->
- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.6.0/css/searchBuilder.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css">
+
+        <!-- data table  -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.6.0/css/searchBuilder.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css">
 
         <!-- Font Icons -->
         <link href="{{asset('assets/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
@@ -39,23 +40,23 @@
 
 				<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-				<!-- <link   href="{{ asset('assets/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"> -->
 				<!-- Include DataTables CSS -->
 				<!-- <link   href="{{ asset('assets/datatables/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"> -->
 
         <script src="{{ asset('js/modernizr.min.js') }}"></script>
-			<style>
-				.dataTables_wrapper .dataTables_paginate .paginate_button {
-    box-sizing: border-box;
-    display: inline-block;
-    min-width: 1.5em;
-    padding:0 !important;
-    cursor: pointer;
-    color: inherit !important;
-    border: 1px solid transparent;
+        <style>
+          .dataTables_wrapper .dataTables_paginate .paginate_button {
+            box-sizing: border-box;
+            display: inline-block;
+            min-width: 1.5em;
+            padding:0 !important;
+            cursor: pointer;
+            color: inherit !important;
+            border: 1px solid transparent;
+            background-color:none;
 
-}
-			</style>
+          }
+        </style>
     </head>
 
     <body class="fixed-left">
@@ -351,46 +352,46 @@
 				<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap.js"></script>
 
       <!-- data table  -->
-			<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdn.datatables.net/searchbuilder/1.6.0/js/dataTables.searchBuilder.min.js"></script>
-  <script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('#dataTable').DataTable({
-        responsive: true,
-        dom: 'Bfrtip',
-        buttons: [
-          'pdf',
-          'print',
-          'excel',
-          'csv',
-          {
-            extend: 'print',
-            text: 'Print',
-            customize: function (doc) {
-              // Add custom title
-              doc.content[0].text = 'Stock Genie';
-  
-              // Add company logo
-              doc.content[1].image = 'data:image/png;base64,...'; // Replace with your logo's base64 data
-  
-              // Add website link
-              doc.content[2].text = 'Visit our website:stock Genie';
-              doc.content[2].link = 'http://www.StockGenie.com';
-              doc.content[2].color = '#007bff'; // Customize link color
-            }
-          }
-        ]
-      });
-    });
-  </script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/searchbuilder/1.6.0/js/dataTables.searchBuilder.min.js"></script>
+        <script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+        <script>
+          $(document).ready(function () {
+            $('#dataTable').DataTable({
+              responsive: true,
+              dom: 'Bfrtip',
+              buttons: [
+                'pdf',
+                'print',
+                'excel',
+                'csv',
+                {
+                  extend: 'print',
+                  text: 'Print',
+                  customize: function (doc) {
+                    // Add custom title
+                    doc.content[0].text = 'Stock Genie';
+        
+                    // Add company logo
+                    doc.content[1].image = 'data:image/png;base64,...'; // Replace with your logo's base64 data
+        
+                    // Add website link
+                    doc.content[2].text = 'Visit our website:stock Genie';
+                    doc.content[2].link = 'http://www.StockGenie.com';
+                    doc.content[2].color = '#007bff'; // Customize link color
+                  }
+                }
+              ]
+            });
+          });
+        </script>
         <script src="{{asset('assets/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/datatables/dataTables.bootstrap.js')}}"></script>
 
