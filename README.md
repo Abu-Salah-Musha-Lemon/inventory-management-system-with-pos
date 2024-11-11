@@ -153,6 +153,17 @@ Before running the application, ensure that your PHP environment is properly con
    The application will be available at `http://localhost:8000`.
 
 ---
+8. **Error:**
+
+  did you show utf8mb4_0900_ai_ci error.
+  visite the path: config/database.php
+  past : 
+  ```bash
+  mysql=>[
+   'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+  ],
+  ```
+---
 
 ## Usage
 
