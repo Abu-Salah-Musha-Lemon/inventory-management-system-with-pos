@@ -177,9 +177,6 @@ For inquiries or support, please reach out to **lemonahmed512@gmail.com**.
 ---
 
 Thank you for using the **Inventory Management System with POS**! We hope it helps you efficiently manage your inventory and sales operations.
-```
-
----
 
 ### Key Details:
 
