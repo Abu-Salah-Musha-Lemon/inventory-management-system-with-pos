@@ -190,7 +190,7 @@ For inquiries or support, please reach out to **lemonahmed512@gmail.com**.
 
 ---
 
-Thank you for using the **Inventory Management System with POS**! We hope it helps you efficiently manage your inventory and sales operations.
+Thank you for using the **Inventory Management System with POS**! I hope it helps you efficiently manage your inventory and sales operations.
 
 ### Key Updates:
 1. **Additional Configuration Section:**  
@@ -200,5 +200,3 @@ Thank you for using the **Inventory Management System with POS**! We hope it hel
    This now includes steps for setting up the environment, installing dependencies, running migrations, building assets, and starting the server.
 
 ---
-
-Let me know if you'd like further modifications or additions!
