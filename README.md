@@ -1,6 +1,3 @@
-Certainly! Below is the README file for your **Inventory Management System with POS** project, formatted as per the example you provided:
-
-```markdown
 # Inventory Management System with POS
 **Developed by**  
 Abu Salah Musha Lemon
