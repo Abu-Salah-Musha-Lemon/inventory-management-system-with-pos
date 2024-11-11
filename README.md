@@ -185,7 +185,3 @@ Thank you for using the **Inventory Management System with POS**! We hope it hel
 3. **Installation**: Walks through cloning the repo, installing backend and frontend dependencies, setting up the environment, running migrations, and building assets.
 4. **Features**: Lists core functionalities such as inventory management, POS, user authentication, reporting, and notifications.
 5. **Contributing**: Standard open-source contribution instructions.
-
----
-
-Let me know if you need any further modifications or have specific requests to include in the README!
