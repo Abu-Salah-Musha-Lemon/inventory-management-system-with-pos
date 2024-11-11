@@ -69,7 +69,7 @@
                 <input type="hidden" name=""id= "oldDue" value="{{$order->due}}"step="0.01">
                 <input type="hidden" name="id"id= "id" value="{{$order->id}}"step="0.01">
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger waves-effect waves-light " data-bs-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal" onclick="clearFields()">Close</button>
                     <button type="submit" class="btn btn-success waves-effect waves-light">Submit</button>
                 </div> 
             </form>
@@ -275,5 +275,9 @@
                
            
         </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 @endsection

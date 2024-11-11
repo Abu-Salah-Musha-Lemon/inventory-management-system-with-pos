@@ -71,7 +71,7 @@ width:auto;
 		<input type="hidden" name="vat" value="{{ Cart::tax() }}">
 		<input type="hidden" name="total" id='total' value="{{$total=  Cart::total() }}">
 		<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Print Invoice</button>
 		</div> 
 </form>
@@ -222,5 +222,9 @@ document.getElementById('printPi').addEventListener('click', function() {
 		printElement('invoice'); // Change 'element1' to the ID of the element you want to print
 });
 </script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 @endsection
